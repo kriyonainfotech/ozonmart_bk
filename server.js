@@ -14,7 +14,8 @@ app.use(
     cors({
         origin: [
             "http://localhost:5173",
-            "https://ozonemart-f.vercel.app"
+            "https://ozonemart-f.vercel.app",
+            "https://ozonmart-frontend.vercel.app"
         ],
         methods: "GET,POST,PUT,DELETE,PATCH",
         credentials: true
