@@ -1,5 +1,5 @@
-const Variant = require('../models/Variant.model.js');
-const Product = require('../models/Product.model.js');
+const Variant = require('../models/variantmodel.js');
+const Product = require('../models/productmodel.js');
 
 /**
  * @route   PUT /api/v1/variants/:id

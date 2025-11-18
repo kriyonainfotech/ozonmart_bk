@@ -4,7 +4,7 @@ const {
     updateVariant,
     addVariantToProduct,
     deleteVariant,
-} = require('../controllers/variant.controller.js');
+} = require('../controllers/variantcontroller.js');
 
 const router = express.Router();
 router.use(authMiddleware); // All variant routes are private

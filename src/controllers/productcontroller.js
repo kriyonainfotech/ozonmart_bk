@@ -1,6 +1,6 @@
-const Product = require('../models/Product.model.js');
-const Variant = require('../models/Variant.model.js');
-const Category = require('../models/Category.model.js');
+const Product = require('../models/productmodel.js');
+const Variant = require('../models/variantmodel.js');
+const Category = require('../models/categorymodel.js');
 const mongoose = require('mongoose');
 
 /**

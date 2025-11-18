@@ -1,5 +1,5 @@
 const express = require('express');
-const { updatePersonalDetails, updateBankDetails, updateBusinessInfo, updateDocuments, updateStoreDetails } = require('../controllers/profile.controller');
+const { updatePersonalDetails, updateBankDetails, updateBusinessInfo, updateDocuments, updateStoreDetails } = require('../controllers/profilecontroller');
 const { authMiddleware } = require('../middlewares/auth.middleware');
 const { upload } = require('../config/cloudinary');
 const router = express.Router();

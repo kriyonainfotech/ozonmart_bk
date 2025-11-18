@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerStart, verifyEmail, updateBusinessInfo, updateBankDetails, updateDocuments, updateStoreDetails, loginWithPassword, loginOtpRequest, loginOtpVerify, getCheckAuth, getSellerFull, getDashboardMetrics } = require('../controllers/auth.controller');
+const { registerStart, verifyEmail, updateBusinessInfo, updateBankDetails, updateDocuments, updateStoreDetails, loginWithPassword, loginOtpRequest, loginOtpVerify, getCheckAuth, getSellerFull, getDashboardMetrics } = require('../controllers/authcontroller');
 const { check } = require('express-validator');
 const { authMiddleware } = require('../middlewares/auth.middleware');
 const { upload } = require('../config/cloudinary');

@@ -1,4 +1,4 @@
-const Seller = require('../models/seller.model');
+const Seller = require('../models/sellermodel');
 // --- REMOVED: no longer needed for simple updates ---
 // const { validationResult } = require('express-validator');
 

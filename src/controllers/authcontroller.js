@@ -1,7 +1,7 @@
-const Seller = require('../models/seller.model.js');
-const Product = require('../models/product.model.js');
-const Category = require('../models/category.model.js');
-const Variant = require('../models/variant.model.js');
+const Seller = require('../models/sellermodel.js');
+const Product = require('../models/productmodel.js');
+const Category = require('../models/categorymodel.js');
+const Variant = require('../models/variantmodel.js');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');

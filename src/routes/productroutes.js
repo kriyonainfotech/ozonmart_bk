@@ -6,7 +6,7 @@ const {
   getProductById,
   updateProduct,
   deleteProduct,
-} = require('../controllers/product.controller.js');
+} = require('../controllers/productcontroller.js');
 const { upload } = require('../config/cloudinary.js');
 
 const router = express.Router();

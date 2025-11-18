@@ -186,8 +186,6 @@ const getMyCategoryById = async (req, res) => {
     }
 };
 
-module.exports.getMyCategoryById = getMyCategoryById;
-
 module.exports = {
     createCategory,
     getMyCategories,
