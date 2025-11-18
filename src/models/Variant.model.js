@@ -89,5 +89,4 @@ VariantSchema.virtual('discount').get(function () {
 // A product can't have two variants with the same name
 VariantSchema.index({ product: 1, name: 1 }, { unique: true });
 
-const Variant = mongoose.model('Variant', VariantSchema);
-module.exports = Variant;
+module.exports = mongoose.models.Variant || mongoose.model("Variant", VariantSchema);

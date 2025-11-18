@@ -101,5 +101,4 @@ ProductSchema.virtual('variants', {
 });
 
 
-const Product = mongoose.model('Product', ProductSchema);
-module.exports = Product;
+module.exports = mongoose.models.Product || mongoose.model("Product", ProductSchema);

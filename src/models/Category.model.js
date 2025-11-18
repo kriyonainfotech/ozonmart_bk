@@ -50,5 +50,4 @@ const CategorySchema = new mongoose.Schema(
 // Ensure a seller cannot have two categories with the same name
 CategorySchema.index({ name: 1, seller: 1 }, { unique: true });
 
-const Category = mongoose.model('Category', CategorySchema);
-module.exports = Category;
+module.exports = mongoose.models.Category || mongoose.model("Category", CategorySchema);

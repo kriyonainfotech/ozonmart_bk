@@ -175,5 +175,6 @@ SellerSchema.methods.compareOtp = async function (enteredOtp) {
 };
 
 
-const Seller = mongoose.model('Seller', SellerSchema);
-module.exports = Seller;
+module.exports = mongoose.models.Seller || mongoose.model("Seller", SellerSchema);
+
+// module.exports = Seller;

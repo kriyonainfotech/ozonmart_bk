@@ -1,4 +1,8 @@
 const Seller = require('../models/seller.model.js');
+const Product = require('../models/product.model.js');
+const Category = require('../models/category.model.js');
+const Variant = require('../models/variant.model.js');
+const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const crypto = require('crypto');
@@ -694,6 +698,48 @@ const getSellerFull = async (req, res) => {
     }
 };
 
+const getDashboardMetrics = async (req, res) => {
+    try {
+        const sellerId = req.seller.id;
+
+        // 1. Get Product & Category Counts
+        const productCount = await Product.countDocuments({ seller: sellerId });
+        const categoryCount = await Category.countDocuments({ seller: sellerId });
+
+        // 2. Get Variant metrics (Total Stock, Out of Stock)
+        const variantMetrics = await Variant.aggregate([
+            {
+                $match: { seller: new mongoose.Types.ObjectId(sellerId) }
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalStock: { $sum: '$stock' },
+                    outOfStockItems: {
+                        $sum: { $cond: [{ $eq: ['$stock', 0] }, 1, 0] }
+                    }
+                }
+            }
+        ]);
+
+        const metrics = {
+            productCount,
+            categoryCount,
+            totalStock: variantMetrics[0]?.totalStock || 0,
+            outOfStockItems: variantMetrics[0]?.outOfStockItems || 0,
+        };
+
+        res.status(200).json({
+            success: true,
+            metrics,
+        });
+
+    } catch (error) {
+        console.error('Get Dashboard Metrics Error:', error.message);
+        res.status(500).json({ message: 'Server error fetching dashboard metrics.' });
+    }
+};
+
 module.exports = {
     registerStart,
     verifyEmail,
@@ -705,5 +751,6 @@ module.exports = {
     loginOtpRequest,
     loginOtpVerify,
     getCheckAuth,
-    getSellerFull
+    getSellerFull,
+    getDashboardMetrics
 };
