@@ -1,5 +1,5 @@
-const Category = require('../models/Category.model.js');
-const Seller = require('../models/seller.model.js');
+const Category = require('../models/categorymodel.js');
+const Seller = require('../models/sellermodel.js');
 
 /**
  * @route   POST /api/v1/categories
