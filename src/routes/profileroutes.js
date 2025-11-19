@@ -12,7 +12,13 @@ router.put('/business', updateBusinessInfo);
 router.put('/bank', upload.single("cancelledCheque"), updateBankDetails);
 
 // DOCUMENTS (multiple files)
-router.put('/documents', upload.array("documents", 10), updateDocuments);
+router.put('/documents', upload.fields([
+    { name: 'gstCertificate', maxCount: 1 },
+    { name: 'panCard', maxCount: 1 },
+    { name: 'fssaiLicence', maxCount: 1 },
+    { name: 'addressProof', maxCount: 1 },
+    { name: 'additionalCertificate', maxCount: 1 } // For optional doc
+]), updateDocuments);
 
 // STORE DETAILS (if you want store photos upload)
 router.put('/store-details', upload.array("storePhotos", 5), updateStoreDetails);
