@@ -28,9 +28,10 @@ const VariantSchema = new mongoose.Schema(
         },
         sku: {
             type: String,
-            required: [true, 'SKU is required'],
             trim: true,
-            unique: true, // SKU should be unique across the whole system
+            unique: true,
+            sparse: true, // <-- IMPORTANT!
+            default: null
         },
         barcode: {
             type: String,

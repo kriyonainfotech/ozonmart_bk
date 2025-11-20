@@ -464,16 +464,18 @@ const updateStoreDetails = async (req, res) => {
         // 6. Save the updated seller document
         await seller.save();
 
-        // 7. Send success response
+        // 🔥 Generate JWT token (same as login)
+        const token = generateToken(seller._id);
+
         res.status(200).json({
             success: true,
-            message: 'Registration complete! Your profile is now pending admin approval.',
-            seller: {
-                id: seller._id,
-                status: seller.status,
-                storeDetails: seller.storeDetails,
-            },
+            message: 'Registration complete!',
+            id: seller._id,
+            token, // <--- TOKEN ADDED HERE
+            sellerStatus: seller.status,
+            sellerDetails: seller.storeDetails,
         });
+
     } catch (error) {
         console.error('Update Store Details Error:', error.message);
         res.status(500).json({ message: 'Server error updating store details.' });
