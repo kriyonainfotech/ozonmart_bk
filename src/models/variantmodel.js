@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 
-// This model holds the SPECIFIC info for each purchasable item.
-// Example: "500g" (Name)
-// It is the "Child" of a "Product"
-
 const VariantSchema = new mongoose.Schema(
     {
         // --- Core Links ---
@@ -28,13 +24,14 @@ const VariantSchema = new mongoose.Schema(
         },
         sku: {
             type: String,
-            default: null
+            default: null,
+            unique: true, // ensures uniqueness across the system
+            trim: true
         },
         barcode: {
             type: String,
             trim: true,
         },
-
         // --- Pricing (from Doc) ---
         mrp: {
             type: Number,
@@ -50,18 +47,14 @@ const VariantSchema = new mongoose.Schema(
                 'Selling price must be less than or equal to MRP',
             ],
         },
-
-        // --- Inventory (from Doc) ---
         stock: {
             type: Number,
             required: [true, 'Stock quantity is required'],
             default: 0,
         },
         leadTime: {
-            type: String, // e.g., "2-3 days"
+            type: String,
         },
-
-        // --- Status (from Doc) ---
         status: {
             type: String,
             enum: ['active', 'inactive', 'outOfStock'],
@@ -70,7 +63,6 @@ const VariantSchema = new mongoose.Schema(
     },
     {
         timestamps: true,
-        // Auto-calculate discount
         toJSON: { virtuals: true },
         toObject: { virtuals: true },
     }

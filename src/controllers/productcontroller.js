@@ -204,11 +204,19 @@ const createProduct = async (req, res) => {
         const productId = savedProduct._id;
 
         // --- Create Child Variants ---
-        const variantDocs = parsedVariants.map(v => ({
-            ...v,
-            product: productId,
-            seller: sellerId,
-        }));
+        // --- Create Child Variants ---
+        const variantDocs = parsedVariants.map((v, idx) => {
+            const sku = v.sku && v.sku.trim() !== ''
+                ? v.sku
+                : `SKU-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
+            return {
+                ...v,
+                sku,
+                product: productId,
+                seller: sellerId,
+            };
+        });
 
         const savedVariants = await Variant.insertMany(variantDocs, { session });
 
