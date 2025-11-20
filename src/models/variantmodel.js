@@ -28,9 +28,6 @@ const VariantSchema = new mongoose.Schema(
         },
         sku: {
             type: String,
-            trim: true,
-            unique: true,
-            sparse: true, // <-- IMPORTANT!
             default: null
         },
         barcode: {
